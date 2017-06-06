@@ -14,41 +14,43 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class ShowMap {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	private prevlat = 0;
+	private prevlng = 0;
 
- 	var prevlat = "";
-	var prevlng = "";
-
-  	var onLocationSuccess = function(position) {
-  		
-	    var lat = position.coords.latitude;
-	    var lng = position.coords.longitude;
-
-	    console.log("latitude : " + lat + '\n' + "longitude : " + lng );
-	    var audio = new Audio('assets/music/ACDC-Highway-to-Hell.mp3');
-	    if(lat == "45.7623301" && lng == "3.1089477"){
-	    	if(prevlat != lat || prevlng != lng){
-	    		
-	    		audio.play();
-	    	}
-	    }else{
-	    	audio.pause();
-			audio.currentTime = 0;
-	    }  
-	    prevlat = lat;
-  		prevlng = lng;
-  	};
+	private lat = 0;
+	private lng = 0;
 
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
 
-	// onError Callback receives a PositionError object
-	//
-	function onLocationError(error) {
-		alert('code: '    + error.code    + '\n' +
-		     'message: ' + error.message + '\n');
-	}
+  	var watchOptions = {
+	    timeout : 3000,
+	    enableHighAccuracy: false // may cause errors if true
+	};
 
-	navigator.geolocation.watchPosition(onLocationSuccess, onLocationError);
+  	let watch = this.geolocation.watchPosition(watchOptions);
+
+	watch.subscribe((data) => {
+		console.log(this.prevlat);
+	 	this.lat = data.coords.latitude;
+	 	this.lng = data.coords.longitude;
+
+	 	console.log("latitude : " + this.lat + '\n' + "longitude : " + this.lng );
+
+		  var audio = new Audio('assets/music/ACDC-Highway-to-Hell.mp3');
+
+		  if(this.lat == 45.7622942 && this.lng == 3.1089035){
+		    if(this.prevlat != this.lat || this.prevlng != this.lng){
+		    	if(confirm("Voulez-vous lancer la musique ?")){
+		    		audio.play();
+		    	}
+		    }else{
+		    	audio.pause();
+		    }
+		    this. prevlat = this.lat;
+		    this.prevlng = this.lng;
+		  }
+	});
 
   }
 }
