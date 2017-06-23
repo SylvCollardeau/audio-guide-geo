@@ -4,20 +4,22 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
+import { MusicControls } from '@ionic-native/music-controls';
+import { Http, HttpModule } from '@angular/http';
+import { AudioGeoService } from '../service/audio-geo-service';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ShowMap } from '../pages/show-map/show-map';
-import { NativeAudio } from '@ionic-native/native-audio';
-
+import { AudioGeo } from '../pages/audio-geo/audio-geo';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ShowMap
+    AudioGeo
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -25,12 +27,14 @@ import { NativeAudio } from '@ionic-native/native-audio';
   entryComponents: [
     MyApp,
     HomePage,
-    ShowMap
+    AudioGeo
   ],
-  providers: [
+  providers: [ 
+    MusicControls,
     StatusBar,
     SplashScreen,
     Geolocation,
+    AudioGeoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

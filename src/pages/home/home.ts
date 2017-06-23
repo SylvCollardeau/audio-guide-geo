@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ShowMap } from '../show-map/show-map';
+import { AudioGeo } from '../audio-geo/audio-geo';
 
 @Component({
   selector: 'page-home',
@@ -8,8 +8,8 @@ import { ShowMap } from '../show-map/show-map';
 })
 export class HomePage {
 
-  public showMap: any;
+  public audioGeo: any;
   constructor(public navCtrl: NavController) {
-  	this.showMap = ShowMap;
+  	this.audioGeo = AudioGeo;
   }
 }
