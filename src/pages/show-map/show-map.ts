@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Connexion } from '../connexion/connexion';
 
 /**
  * Generated class for the ShowMap page.
