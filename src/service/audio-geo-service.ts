@@ -51,7 +51,7 @@ export class AudioGeoService {
 				if (latitude == music.lat && longitude == music.lng){
 
 					if (latitude != this.lat && longitude != this.lng){
-						
+
 						if(confirm("Voulez-vous lancer la musique " + music.titre)){
 
 							this.audio = new Audio(music.path);
@@ -77,11 +77,15 @@ export class AudioGeoService {
 							           this.audio.pause();
 							           this.audio.currentTime = 0;
 							           this.musicControls.updateIsPlaying(false);
+							           this.lat = 0;
+							           this.lng = 0;
 							           break;
 							       default:
 							           this.audio.pause();
 							           this.audio.currentTime = 0;
 							           this.musicControls.updateIsPlaying(false);
+							           this.lat = 0;
+							           this.lng = 0;
 							           break;
 				    			}	
 							});
