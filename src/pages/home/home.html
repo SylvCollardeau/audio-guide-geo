@@ -17,3 +17,23 @@
     <button ion-button full [navPush]="audioGeo">Activer l'audio géolocatlisation !</button>
 
 </ion-content>
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Audio-guide par géolocalisation
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h2>Bienvenue {{ login }} !</h2>
+
+    <button ion-button full [navPush]="audio-geo">Activer l'audio géolocalisation !</button>
+  
+    <button ion-button color="secondary" [navPush]="connexion" *ngIf="!login">Connexion</button>
+    <button ion-button color="danger" (click)="logout()" *ngIf="login">Déconnexion</button>
+</ion-content>

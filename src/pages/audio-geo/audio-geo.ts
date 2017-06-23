@@ -21,8 +21,9 @@ import 'rxjs/Rx';
   selector: 'page-audio-geo',
   templateUrl: 'audio-geo.html',
 })
-public homePage: any;
+
 export class AudioGeo {
+  private homePage: any;
   
   private lat = 0;
   private lng = 0;
